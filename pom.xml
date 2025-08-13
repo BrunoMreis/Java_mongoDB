@@ -37,7 +37,10 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.mongodb/mongodb-driver-sync -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongodb-driver-sync</artifactId>
@@ -45,7 +48,6 @@
 		</dependency>
 
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
