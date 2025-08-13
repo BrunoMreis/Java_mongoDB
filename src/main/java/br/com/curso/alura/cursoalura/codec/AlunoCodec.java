@@ -58,7 +58,6 @@ public class AlunoCodec implements CollectibleCodec<Aluno> {
 		if (notas != null) {
 			List<Double> notasParaSalvar = new ArrayList<>();
 			for (Nota nota : notas) {
-				System.out.println(nota.getNota()+"///////////////////////////////////////////////////////////////////////////////////////");
 				notasParaSalvar.add(nota.getNota());
 			}
 			document.put("notas", notasParaSalvar);
