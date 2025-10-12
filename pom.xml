@@ -7,7 +7,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.5.4</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.curso.alura</groupId>
 	<artifactId>cursoalura</artifactId>
@@ -44,7 +44,7 @@
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongodb-driver-sync</artifactId>
-			<version>5.5.1</version>
+			<version>5.6.0</version>
 		</dependency>
 
 	</dependencies>
