@@ -47,7 +47,7 @@ public class AlunoRepository {
 	}
 
 	private List<Aluno> popularAlunos(MongoCursor<Aluno> mongoCursor) {
-		List<Aluno> alunos = new ArrayList<Aluno>();
+		List<Aluno> alunos = new ArrayList<>();
 		while (mongoCursor.hasNext()) {
 			Aluno aluno = mongoCursor.next();
 			alunos.add(aluno);
