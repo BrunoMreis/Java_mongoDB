@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 
 <head>
 	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 	<title>EscolAlura</title>
@@ -23,14 +24,14 @@
 							<option value="aprovados">Aprovados</option>
 							<option value="reprovados">Reprovados</option>
 						</select>
-						<label>Classificação</label>
+						<label for="classificacao">Classificação</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
+						<label for="notacorte">Nota de Corte</label>
 						<select class="     " name="notacorte" id="notacorte">
-							<option value="" disabled="disabled" selected="selected">Escolha
-								aqui</option>
+							<option value="" disabled="disabled" selected="selected">Escolha aqui</option>
 							<option value="10">10</option>
 							<option value="9">9</option>
 							<option value="8">8</option>
@@ -41,7 +42,7 @@
 							<option value="3">3</option>
 							<option value="2">2</option>
 							<option value="1">1</option>
-						</select> <label>Nota de Corte</label>
+						</select> 
 					</div>
 				</div>
 
@@ -58,17 +59,19 @@
 					<table class="striped responsive-table">
 						<thead>
 							<tr>
-								<th style="text-align: center;">Nome</th>
-								<th style="text-align: center;">Dt. Nascimento</th>
-								<th style="text-align: center;">Curso</th>
+								<th scope="col" style="text-align: center;">Nome</th>
+								<th scope="col" style="text-align: center;">Dt. Nascimento</th>
+								<th scope="col" style="text-align: center;">Curso</th>
 							</tr>
 						</thead>
-						<tr th:each="aluno : ${alunos}">
-							<td style="text-align: center;" th:text="${aluno.nome}"></td>
-							<td style="text-align: center;"
-								th:text="${#dates.format(aluno.dataNascimento, 'dd/MM/yyyy')}"></td>
-							<td style="text-align: center;" th:text="${aluno.curso.nome}"></td>
-						</tr>
+						<tbody>
+							<tr th:each="aluno : ${alunos}">
+								<td style="text-align: center;" th:text="${aluno.nome}"></td>
+								<td style="text-align: center;"
+									th:text="${#dates.format(aluno.dataNascimento, 'dd/MM/yyyy')}"></td>
+								<td style="text-align: center;" th:text="${aluno.curso.nome}"></td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 			</div>

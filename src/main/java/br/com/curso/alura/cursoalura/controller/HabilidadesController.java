@@ -1,6 +1,5 @@
 package br.com.curso.alura.cursoalura.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,10 +15,13 @@ import br.com.curso.alura.cursoalura.repository.AlunoRepository;
 @RequestMapping("habilidade")
 public class HabilidadesController {
 
-	@Autowired
 	private AlunoRepository alunoRepository;
 
-	@RequestMapping("/cadastrar/{id}")
+	public HabilidadesController(AlunoRepository alunoRepository) {
+		this.alunoRepository = alunoRepository;
+	}
+
+	@PostMapping("/cadastrar/{id}")
 	public String cadastrar(@PathVariable String id, Model model) {
 		Aluno aluno = alunoRepository.findById(id);
 		model.addAttribute("aluno", aluno);

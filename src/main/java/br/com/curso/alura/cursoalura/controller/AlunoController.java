@@ -2,7 +2,6 @@ package br.com.curso.alura.cursoalura.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.curso.alura.cursoalura.model.Aluno;
 import br.com.curso.alura.cursoalura.repository.AlunoRepository;
@@ -20,11 +18,14 @@ import br.com.curso.alura.cursoalura.repository.AlunoRepository;
 public class AlunoController {
 	
 	
-	@Autowired private AlunoRepository alunoRepository;
+	private AlunoRepository alunoRepository;
 	
-	//@Autowired private AlunoRepositoryInterface alunoRepository;
 
 	
+	public AlunoController(AlunoRepository alunoRepository) {
+		this.alunoRepository = alunoRepository;
+	}
+
 	@GetMapping("/cadastrar")
 	public String cadastar(Model model) {
 		model.addAttribute("aluno",new Aluno());
@@ -57,7 +58,7 @@ public class AlunoController {
 	}
 	
 	@GetMapping("/pesquisar")
-	public String pesquisar(@RequestParam("nome") String nome, Model model) {
+	public String pesquisar(String nome, Model model) {
 		List<Aluno>alunos = alunoRepository.pesquisaPor(nome);
 		model.addAttribute("alunos", alunos);
 		

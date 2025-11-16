@@ -47,7 +47,7 @@ public class AlunoCodec implements CollectibleCodec<Aluno> {
 		document.put("curso", new Document("nome", curso.getNome()));
 
 		if (habilidades != null) {
-			List<Document> habilidadesDocument = new ArrayList<Document>();
+			var habilidadesDocument = new ArrayList<Document>();
 			for (Habilidade habilidade : habilidades) {
 				habilidadesDocument
 						.add(new Document("nome", habilidade.getNome()).append("nivel", habilidade.getNivel()));
@@ -82,6 +82,7 @@ public class AlunoCodec implements CollectibleCodec<Aluno> {
 		return Aluno.class;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Aluno decode(BsonReader reader, DecoderContext decoderContext) {
 		Document document = codec.decode(reader, decoderContext);
@@ -101,10 +102,10 @@ public class AlunoCodec implements CollectibleCodec<Aluno> {
 			aluno.setCurso(curso);
 		}
 
-		List<Document> habilidadesDocument = (List<Document>) document.get("habilidades");
+		List<Document> habilidadesDocument = (List<Document>) document.get("habilidades"); 
 
 		if (habilidadesDocument != null) {
-			List<Habilidade> habilidades = new ArrayList<Habilidade>();
+			var habilidades = new ArrayList<Habilidade>();
 
 			for (Document habilidade : habilidadesDocument) {
 
