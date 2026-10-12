@@ -116,21 +116,23 @@ public class AlunoCodec implements CollectibleCodec<Aluno> {
 			}
 
 		}
-		List<Nota> notas = aluno.getNotas();
-
-		if(notas != null) {
-		  List<Double> notasParaSalvar = new ArrayList<>();
-		  for (Nota nota : notas) {
-		    notasParaSalvar.add(nota.getNota()); 
-		  }
-		  document.put("notas", notasParaSalvar);
-		} 
+		List<Double> notasDocument = (List<Double>) document.get("notas");
+		if (notasDocument != null) {
+			var notas = new ArrayList<Nota>();
+			for (Double nota : notasDocument) {
+				notas.add(new Nota(nota));
+			}
+			aluno.setNotas(notas);
+		}
 
 		Document contato = (Document) document.get("contato");
 		if (contato != null) {
 			String endereco = contato.getString("endereco");
 			List<Double> coordinates = (List<Double>) contato.get("coordinates");
-			aluno.setContato(new Contato(endereco, coordinates));
+			Contato contatoAluno = new Contato(endereco, coordinates);
+			contatoAluno.setTelefone(contato.getString("telefone"));
+			contatoAluno.setEmail(contato.getString("E-mail"));
+			aluno.setContato(contatoAluno);
 
 		}
 
@@ -139,7 +141,7 @@ public class AlunoCodec implements CollectibleCodec<Aluno> {
 
 	@Override
 	public Aluno generateIdIfAbsentFromDocument(Aluno aluno) {
-		return documentHasId(aluno) ? aluno.criarID() : aluno;
+		return documentHasId(aluno) ? aluno : aluno.criarID();
 	}
 
 	@Override
